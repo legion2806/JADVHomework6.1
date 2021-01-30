@@ -1,28 +1,23 @@
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Main {
+
 
     public static void main(String[] args) {
 
         String aborigens = "jfhfhjd jfhfhjd jdhhosjid jdhhosjid fjdhfsjhfks fjdhfsjhfks " +
                 "djnsdmkma dsfnp djngkmvxgk ko";
 
-        Set<String> repeat = new LinkedHashSet<>();
-        String[] a = aborigens.split(" ");
-
-        for ( String ss : a)
-            repeat.add(ss);
-
-        String newRepeat = repeat.toString()
-                .replace("[","")
-                .replace("]","")
-                .replace(",","");
+        Set<String> toFilter = Set.of("jfhfhjd", "jdhhosjid", "fjdhfsjhfks");
+        Set<String> seen = new HashSet<>();
 
         System.out.println("Ваш словарь:");
 
         // Монада
-        Arrays.stream(newRepeat.split("\\s"))
+        Arrays.stream(aborigens.split("\\s"))
                 .sorted()
+                .filter(s -> !toFilter.contains(s) || seen.add(s))
                 .map(w -> w + " - это слово ещё неизвестно!")
                 .forEach(System.out::println);
 
