@@ -10,14 +10,8 @@ public class Main {
 
         Arrays.stream(aborigens.split("\\s"))
                 .sorted()
-                .filter((x) -> {
-                    if (x.equalsIgnoreCase("jfhfhjd") || x.equalsIgnoreCase("jdhhosjid")
-                            || x.equalsIgnoreCase("fjdhfsjhfks")) {
-                        System.out.println(x + " - это слово повторяеться");
-                        return false;
-                    }
-                    return true;
-                }).map(w -> w + " - это слово ещё неизвестно!")
+                .distinct()
+                .map(w -> w + " - это слово ещё неизвестно!")
                 .forEach(System.out::println);
 
     }
